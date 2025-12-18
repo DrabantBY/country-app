@@ -1,5 +1,5 @@
 import type { Routes } from "@angular/router";
-import { CountriesComponent } from "./components/countries/countries.component";
+import { CountriesComponent } from "@components";
 
 export const routes: Routes = [
   {
@@ -14,8 +14,6 @@ export const routes: Routes = [
   {
     path: "**",
     loadComponent: () =>
-      import("./components/not-found/not-found.component").then(
-        ({ NotFoundComponent }) => NotFoundComponent,
-      ),
+      import("@components").then(({ NotFoundComponent }) => NotFoundComponent),
   },
 ];

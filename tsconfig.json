@@ -11,7 +11,13 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "target": "ES2022",
-    "module": "preserve"
+    "module": "preserve",
+    "baseUrl": "./src",
+    "paths": {
+      "@models": ["app/models/country.model.d.ts"],
+      "@components": ["app/components/index.ts"],
+      "@services": ["app/services/index.ts"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
@@ -19,13 +25,9 @@
     "strictInputAccessModifiers": true,
     "strictTemplates": true
   },
-  "files": [],
   "references": [
     {
       "path": "./tsconfig.app.json"
-    },
-    {
-      "path": "./tsconfig.spec.json"
     }
   ]
 }

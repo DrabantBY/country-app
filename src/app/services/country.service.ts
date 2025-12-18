@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable, inject } from "@angular/core";
-import type { CountryType } from "../models/country.model";
+import type { CountryType } from "@models";
 
 @Injectable({
   providedIn: "root",
