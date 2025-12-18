@@ -16,7 +16,8 @@
     "paths": {
       "@models": ["app/models/country.model.d.ts"],
       "@components": ["app/components/index.ts"],
-      "@services": ["app/services/index.ts"]
+      "@services": ["app/services/index.ts"],
+      "@shells": ["app/shells/index.ts"]
     }
   },
   "angularCompilerOptions": {
