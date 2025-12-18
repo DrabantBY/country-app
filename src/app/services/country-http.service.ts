@@ -5,18 +5,18 @@ import type { CountryType } from "@models";
 @Injectable({
   providedIn: "root",
 })
-export class CountryService {
+export class CountryHttpService {
   #http = inject(HttpClient);
 
   #url = (id: number | string = "") => `http://localhost:3000/countries/${id}`;
 
   fetchList = () => this.#http.get<CountryType.Data[]>(this.#url());
 
-  insertOne = (name: string) =>
-    this.#http.post<CountryType.Data>(this.#url(), name);
+  insertOne = (country: string) =>
+    this.#http.post<CountryType.Data>(this.#url(), { country });
 
-  upsertOne = (id: string | number, name: string) =>
-    this.#http.put<CountryType.Data>(this.#url(id), name);
+  upsertOne = (id: string | number, country: string) =>
+    this.#http.put<CountryType.Data>(this.#url(id), { country });
 
   deleteOne = (id: string | number) => this.#http.delete<void>(this.#url(id));
 }

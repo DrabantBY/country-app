@@ -1,6 +1,6 @@
 export namespace CountryType {
   export type Data = {
-    id: number;
+    id: number | string;
     country: string;
   };
 

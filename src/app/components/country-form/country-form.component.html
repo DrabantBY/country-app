@@ -4,8 +4,10 @@
   <button
     matIconButton
     matSuffix
+    [disabled]='invalid()'
+    (click)="insertCountry()"
   >
     <mat-icon fontIcon>add_box</mat-icon>
   </button>
-  <mat-error>error</mat-error>
+  <mat-error>{{message()}}</mat-error>
 </mat-form-field>
