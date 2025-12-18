@@ -1,5 +1,5 @@
 import type { Routes } from "@angular/router";
-import { CountriesComponent } from "@components";
+import { CountryShellComponent } from "@shells";
 
 export const routes: Routes = [
   {
@@ -9,7 +9,7 @@ export const routes: Routes = [
   },
   {
     path: "countries",
-    component: CountriesComponent,
+    component: CountryShellComponent,
   },
   {
     path: "**",

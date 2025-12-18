@@ -3,4 +3,6 @@ export namespace CountryType {
     id: number;
     country: string;
   };
+
+  export type FormValue = Omit<Data, "id">;
 }
