@@ -1,0 +1,43 @@
+{
+  "countries": [
+    {
+      "id": 1,
+      "country": "Belarus"
+    },
+
+    {
+      "id": 2,
+      "country": "Poland"
+    },
+
+    {
+      "id": 3,
+      "country": "United States"
+    },
+
+    {
+      "id": 4,
+      "country": "Ukraine"
+    },
+
+    {
+      "id": 5,
+      "country": "United Kingdom"
+    },
+
+    {
+      "id": 6,
+      "country": "Germany"
+    },
+
+    {
+      "id": 7,
+      "country": "France"
+    },
+
+    {
+      "id": 8,
+      "country": "Italy"
+    }
+  ]
+}
