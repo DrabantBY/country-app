@@ -10,11 +10,11 @@ export class CountryHttpService {
 
   fetchList = () => this.#http.get<CountryType.Data[]>(this.#url());
 
-  insertOne = (country: string) =>
-    this.#http.post<CountryType.Data>(this.#url(), { country });
+  insertOne = (name: string) =>
+    this.#http.post<CountryType.Data>(this.#url(), { name });
 
-  upsertOne = (id: string | number, country: string) =>
-    this.#http.put<CountryType.Data>(this.#url(id), { country });
+  upsertOne = (id: string | number, name: string) =>
+    this.#http.put<CountryType.Data>(this.#url(id), { name });
 
   deleteOne = (id: string | number) =>
     this.#http.delete<CountryType.Data>(this.#url(id));

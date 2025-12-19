@@ -38,9 +38,9 @@ export class CountryListComponent {
   });
 
   protected upsertCountry = (index: number) => {
-    const { id, country } = this.list()[index];
+    const { id, name } = this.list()[index];
     if (!id) return;
-    this.#countryDataService.upsertCountry(id, country);
+    this.#countryDataService.upsertCountry(id, name);
   };
 
   protected deleteCountry = (index: number) => {

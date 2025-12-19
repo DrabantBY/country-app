@@ -32,15 +32,15 @@ export class CountryFormComponent {
 
   protected countryForm = form<CountryType.Data>(
     signal({
-      country: "",
+      name: "",
     }),
     countryValidation,
   );
 
-  protected invalid = this.countryForm.country().invalid;
-  protected value = this.countryForm.country().value;
+  protected invalid = this.countryForm.name().invalid;
+  protected value = this.countryForm.name().value;
   protected message = computed(
-    () => this.countryForm.country().errors()[0]?.message ?? "",
+    () => this.countryForm.name().errors()[0]?.message ?? "",
   );
 
   protected insertCountry = () => {

@@ -2,31 +2,35 @@
   "countries": [
     {
       "id": "1",
-      "country": "Belarus"
+      "name": "Belarus"
     },
     {
       "id": "2",
-      "country": "Poland"
+      "name": "Poland"
     },
     {
       "id": "3",
-      "country": "United States"
+      "name": "United States"
     },
     {
       "id": "4",
-      "country": "Ukraine"
+      "name": "Ukraine"
     },
     {
       "id": "5",
-      "country": "United Kingdom"
+      "name": "United Kingdom"
     },
     {
-      "id": "6",
-      "country": "Germany"
+      "name": "Germany",
+      "id": "6"
     },
     {
       "id": "8",
-      "country": "Italy"
+      "name": "Italy"
+    },
+    {
+      "id": "9",
+      "name": "France"
     }
   ]
 }
