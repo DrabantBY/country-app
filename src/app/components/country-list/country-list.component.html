@@ -1,1 +1,31 @@
-<p>country-list works!</p>
+<form novalidate>
+  <fieldset>
+    <legend>country list</legend>
+      @for (item of listForm; track item) {
+        <mat-form-field  appearance="outline">
+          <mat-label>country name</mat-label>
+          <input matInput [field]="item.country" >
+          <button
+            type="button"
+            matIconButton
+            matSuffix
+            [disabled]="item.country().invalid()"
+            (click)="upsertCountry($index)"
+          >
+            <mat-icon fontIcon>edit</mat-icon>
+          </button>
+          <button
+            type="button"
+            matIconButton
+            matSuffix
+            (click)="deleteCountry($index)"
+          >
+            <mat-icon fontIcon>delete</mat-icon>
+          </button>
+          <mat-error>{{item.country().errors()[0]?.message ?? ""}}</mat-error>
+        </mat-form-field>
+      }
+  </fieldset>
+</form>
+
+

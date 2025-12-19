@@ -17,7 +17,8 @@
       "@models": ["app/models/country.model.d.ts"],
       "@components": ["app/components/index.ts"],
       "@services": ["app/services/index.ts"],
-      "@shells": ["app/shells/index.ts"]
+      "@shells": ["app/shells/index.ts"],
+      "@validation": ["app/validation/index.ts"]
     }
   },
   "angularCompilerOptions": {

@@ -1,0 +1,16 @@
+:host {
+  fieldset {
+    padding-inline: 24px;
+    padding-block: 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 12px;
+    border-radius: 18px;
+    corner-shape: squircle;
+  }
+
+  legend {
+    text-transform: uppercase;
+  }
+
+}

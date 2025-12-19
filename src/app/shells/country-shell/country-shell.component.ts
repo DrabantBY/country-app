@@ -1,10 +1,9 @@
 import { Component } from "@angular/core";
-import { CountryFormComponent } from "@components";
+import { CountryFormComponent, CountryListComponent } from "@components";
 
 @Component({
   selector: "app-country-shell",
-  imports: [CountryFormComponent],
+  imports: [CountryFormComponent, CountryListComponent],
   templateUrl: "./country-shell.component.html",
-  styleUrl: "./country-shell.component.scss",
 })
 export class CountryShellComponent {}

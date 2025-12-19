@@ -13,18 +13,18 @@ export class CountryDataService {
 
   list = linkedSignal(() => this.#source());
 
-  insertCountry = (name: string) => {
+  insertCountry = (countryName: string) => {
     this.#countryHttpService
-      .insertOne(name)
+      .insertOne(countryName)
       .pipe(takeUntilDestroyed(this.#destroyRef))
       .subscribe((country) => {
         this.list.update((prev) => [...prev, country]);
       });
   };
 
-  upsertCountry = (id: number | string, name: string) => {
+  upsertCountry = (countryId: number | string, countryName: string) => {
     this.#countryHttpService
-      .upsertOne(id, name)
+      .upsertOne(countryId, countryName)
       .pipe(takeUntilDestroyed(this.#destroyRef))
       .subscribe((country) => {
         this.list.update((prev) =>
@@ -33,11 +33,11 @@ export class CountryDataService {
       });
   };
 
-  deleteCountry = (id: number | string) => {
+  deleteCountry = (countryId: number | string) => {
     this.#countryHttpService
-      .deleteOne(id)
+      .deleteOne(countryId)
       .pipe(takeUntilDestroyed(this.#destroyRef))
-      .subscribe(() => {
+      .subscribe(({ id }) => {
         this.list.update((prev) => prev.filter((item) => item.id !== id));
       });
   };

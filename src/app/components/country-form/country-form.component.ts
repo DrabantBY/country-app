@@ -1,5 +1,5 @@
 import { Component, computed, inject, signal } from "@angular/core";
-import { Field, form, maxLength, required } from "@angular/forms/signals";
+import { Field, form } from "@angular/forms/signals";
 import { MatIconButton } from "@angular/material/button";
 import { MatIcon } from "@angular/material/icon";
 import {
@@ -10,7 +10,8 @@ import {
   MatSuffix,
 } from "@angular/material/input";
 import type { CountryType } from "@models";
-import { CountryHttpService } from "@services";
+import { CountryDataService } from "@services";
+import { countryValidation } from "@validation";
 
 @Component({
   selector: "app-country-form",
@@ -25,19 +26,16 @@ import { CountryHttpService } from "@services";
     MatIcon,
   ],
   templateUrl: "./country-form.component.html",
-  styleUrl: "./country-form.component.scss",
 })
 export class CountryFormComponent {
-  #countryService = inject(CountryHttpService);
+  #countryDataService = inject(CountryDataService);
 
-  #modelForm = signal<CountryType.FormValue>({
-    country: "",
-  });
-
-  protected countryForm = form(this.#modelForm, (schema) => {
-    required(schema.country, { message: "country name is required" });
-    maxLength(schema.country, 255, { message: "max 255 characters" });
-  });
+  protected countryForm = form<CountryType.Data>(
+    signal({
+      country: "",
+    }),
+    countryValidation,
+  );
 
   protected invalid = this.countryForm.country().invalid;
   protected value = this.countryForm.country().value;
@@ -46,6 +44,6 @@ export class CountryFormComponent {
   );
 
   protected insertCountry = () => {
-    this.#countryService.insertOne(this.value()).subscribe();
+    this.#countryDataService.insertCountry(this.value());
   };
 }

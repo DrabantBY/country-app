@@ -2,9 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable, inject } from "@angular/core";
 import type { CountryType } from "@models";
 
-@Injectable({
-  providedIn: "root",
-})
+@Injectable()
 export class CountryHttpService {
   #http = inject(HttpClient);
 
@@ -18,5 +16,6 @@ export class CountryHttpService {
   upsertOne = (id: string | number, country: string) =>
     this.#http.put<CountryType.Data>(this.#url(id), { country });
 
-  deleteOne = (id: string | number) => this.#http.delete<void>(this.#url(id));
+  deleteOne = (id: string | number) =>
+    this.#http.delete<CountryType.Data>(this.#url(id));
 }
