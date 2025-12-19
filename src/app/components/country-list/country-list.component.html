@@ -1,16 +1,17 @@
+
 <form novalidate>
   <fieldset>
     <legend>country list</legend>
-      @for (item of listForm; track item) {
+      @for (country of list(); track country.id) {
         <mat-form-field  appearance="outline">
           <mat-label>country name</mat-label>
-          <input matInput [field]="item.name" >
+          <input matInput [field]="listForm[$index].name" >
           <button
             type="button"
             matIconButton
             matSuffix
-            [disabled]="item.name().invalid()"
-            (click)="upsertCountry($index)"
+            [disabled]="listForm[$index].name().invalid()"
+            (click)="upsertCountry(country.id!, country.name)"
           >
             <mat-icon fontIcon>edit</mat-icon>
           </button>
@@ -18,11 +19,11 @@
             type="button"
             matIconButton
             matSuffix
-            (click)="deleteCountry($index)"
+            (click)="deleteCountry(country.id!)"
           >
             <mat-icon fontIcon>delete</mat-icon>
           </button>
-          <mat-error>{{item.name().errors()[0]?.message ?? ""}}</mat-error>
+          <mat-error>{{listForm[$index].name().errors()[0]?.message ?? ""}}</mat-error>
         </mat-form-field>
       }
   </fieldset>

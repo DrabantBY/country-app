@@ -9,7 +9,7 @@ import { EMPTY } from "rxjs";
 export class MessageService {
   #snackBar = inject(MatSnackBar);
 
-  showError = (err: unknown, action: string = "close") => {
+  showError = (err: unknown, action: string = "CLOSE") => {
     if (err instanceof Error || err instanceof HttpErrorResponse) {
       this.#snackBar.open(err.message || "error", action);
     } else {
@@ -19,7 +19,7 @@ export class MessageService {
     return EMPTY;
   };
 
-  showSuccess = (message: string, action: string = "close") => {
+  showSuccess = (message: string, action: string = "CLOSE") => {
     this.#snackBar.open(message, action);
   };
 }

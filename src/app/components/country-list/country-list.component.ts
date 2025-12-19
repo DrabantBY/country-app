@@ -37,15 +37,11 @@ export class CountryListComponent {
     applyEach(root, countryValidation);
   });
 
-  protected upsertCountry = (index: number) => {
-    const { id, name } = this.list()[index];
-    if (!id) return;
+  protected upsertCountry = (id: number | string, name: string) => {
     this.#countryDataService.upsertCountry(id, name);
   };
 
-  protected deleteCountry = (index: number) => {
-    const { id } = this.list()[index];
-    if (!id) return;
+  protected deleteCountry = (id: number | string) => {
     this.#countryDataService.deleteCountry(id);
   };
 }
