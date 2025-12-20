@@ -11,8 +11,8 @@ import {
 } from "@angular/material/input";
 import type { CountryType } from "@models";
 import { CountryDataService } from "@services";
-import { countryValidation } from "@validation";
 import { ConfirmService } from "@shared";
+import { countryValidation } from "@validation";
 
 @Component({
   selector: "app-country-list",
@@ -30,8 +30,8 @@ import { ConfirmService } from "@shared";
   styleUrl: "./country-list.component.scss",
 })
 export class CountryListComponent {
-  #countryDataService = inject(CountryDataService);
   #confirmService = inject(ConfirmService);
+  #countryDataService = inject(CountryDataService);
 
   protected list = this.#countryDataService.list;
 

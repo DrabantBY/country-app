@@ -1,8 +1,8 @@
 import { HttpErrorResponse } from "@angular/common/http";
 import { Injectable, inject } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { EMPTY } from "rxjs";
 import type { Observable } from "rxjs";
+import { EMPTY } from "rxjs";
 
 @Injectable({
   providedIn: "root",

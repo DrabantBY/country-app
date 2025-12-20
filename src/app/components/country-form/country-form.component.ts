@@ -43,7 +43,7 @@ export class CountryFormComponent {
     () => this.countryForm.name().errors()[0]?.message ?? "",
   );
 
-  protected insertCountry = () => {
+  protected insertCountry(): void {
     this.#countryDataService.insertCountry(this.value());
-  };
+  }
 }

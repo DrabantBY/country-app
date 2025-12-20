@@ -1,4 +1,4 @@
-import { inject, Injectable } from "@angular/core";
+import { Injectable, inject } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { ConfirmComponent } from "@shared";
 import { firstValueFrom } from "rxjs";

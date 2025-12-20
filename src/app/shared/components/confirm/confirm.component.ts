@@ -1,11 +1,10 @@
 import { Component, inject } from "@angular/core";
+import { MatButton } from "@angular/material/button";
 import {
-  MatDialogRef,
   MatDialogActions,
   MatDialogContent,
+  MatDialogRef,
 } from "@angular/material/dialog";
-
-import { MatButton } from "@angular/material/button";
 
 @Component({
   selector: "app-confirm",

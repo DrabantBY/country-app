@@ -16,7 +16,7 @@ export class CountryDataService {
 
   list = linkedSignal(() => this.#source());
 
-  insertCountry = (countryName: string) => {
+  insertCountry(countryName: string): void {
     this.#countryHttpService
       .insertOne(countryName)
       .pipe(
@@ -29,9 +29,9 @@ export class CountryDataService {
           `${country.name} is successfully added`,
         );
       });
-  };
+  }
 
-  upsertCountry = (countryId: number | string, countryName: string) => {
+  upsertCountry(countryId: number | string, countryName: string): void {
     this.#countryHttpService
       .upsertOne(countryId, countryName)
       .pipe(
@@ -44,9 +44,9 @@ export class CountryDataService {
         );
         this.#messageService.showSuccess(`country is successfully updated`);
       });
-  };
+  }
 
-  deleteCountry = (countryId: number | string) => {
+  deleteCountry(countryId: number | string): void {
     this.#countryHttpService
       .deleteOne(countryId)
       .pipe(
@@ -57,5 +57,5 @@ export class CountryDataService {
         this.list.update((prev) => prev.filter((item) => item.id !== id));
         this.#messageService.showSuccess(`${name} is successfully removed`);
       });
-  };
+  }
 }
