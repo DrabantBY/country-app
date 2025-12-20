@@ -1,2 +1,2 @@
-export * from "./dialog.service";
+export * from "./confirm.service";
 export * from "./message.service";

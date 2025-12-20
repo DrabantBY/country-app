@@ -12,7 +12,7 @@ import {
 import type { CountryType } from "@models";
 import { CountryDataService } from "@services";
 import { countryValidation } from "@validation";
-import { DialogService } from "@shared";
+import { ConfirmService } from "@shared";
 
 @Component({
   selector: "app-country-list",
@@ -31,7 +31,7 @@ import { DialogService } from "@shared";
 })
 export class CountryListComponent {
   #countryDataService = inject(CountryDataService);
-  #dialogService = inject(DialogService);
+  #confirmService = inject(ConfirmService);
 
   protected list = this.#countryDataService.list;
 
@@ -39,12 +39,18 @@ export class CountryListComponent {
     applyEach(root, countryValidation);
   });
 
-  protected upsertCountry = (id: number | string, name: string) => {
-    this.#dialogService.showDialog();
-    // this.#countryDataService.upsertCountry(id, name);
-  };
+  protected async upsertCountry(
+    id: number | string,
+    name: string,
+  ): Promise<void> {
+    const hasConfirm = await this.#confirmService.open();
+    if (!hasConfirm) return;
+    this.#countryDataService.upsertCountry(id, name);
+  }
 
-  protected deleteCountry = (id: number | string) => {
+  protected async deleteCountry(id: number | string): Promise<void> {
+    const hasConfirm = await this.#confirmService.open();
+    if (!hasConfirm) return;
     this.#countryDataService.deleteCountry(id);
-  };
+  }
 }
