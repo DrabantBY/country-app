@@ -12,6 +12,7 @@ import {
 import type { CountryType } from "@models";
 import { CountryDataService } from "@services";
 import { countryValidation } from "@validation";
+import { DialogService } from "@shared";
 
 @Component({
   selector: "app-country-list",
@@ -30,6 +31,7 @@ import { countryValidation } from "@validation";
 })
 export class CountryListComponent {
   #countryDataService = inject(CountryDataService);
+  #dialogService = inject(DialogService);
 
   protected list = this.#countryDataService.list;
 
@@ -38,7 +40,8 @@ export class CountryListComponent {
   });
 
   protected upsertCountry = (id: number | string, name: string) => {
-    this.#countryDataService.upsertCountry(id, name);
+    this.#dialogService.showDialog();
+    // this.#countryDataService.upsertCountry(id, name);
   };
 
   protected deleteCountry = (id: number | string) => {

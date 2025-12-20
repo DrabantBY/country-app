@@ -16,6 +16,8 @@ export const routes: Routes = [
   {
     path: "**",
     loadComponent: () =>
-      import("@components").then(({ NotFoundComponent }) => NotFoundComponent),
+      import("@shells").then(
+        ({ NopageShellComponent }) => NopageShellComponent,
+      ),
   },
 ];
