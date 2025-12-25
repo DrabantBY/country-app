@@ -10,7 +10,7 @@ import {
   MatSuffix,
 } from "@angular/material/input";
 import type { CountryType } from "@models";
-import { CountryStore } from "@services";
+import { CountryEntityStore } from "@store";
 import { countryValidation } from "@validation";
 
 @Component({
@@ -28,9 +28,9 @@ import { countryValidation } from "@validation";
   templateUrl: "./country-form.component.html",
 })
 export class CountryFormComponent {
-  #countryStore = inject(CountryStore);
+  #countryEntityStore = inject(CountryEntityStore);
 
-  protected countryForm = form<CountryType.Data>(
+  protected countryForm = form<Omit<CountryType.Data, "id">>(
     signal({
       name: "",
     }),
@@ -44,6 +44,6 @@ export class CountryFormComponent {
   );
 
   protected insertCountry(): void {
-    this.#countryStore.insertCountry(this.value());
+    this.#countryEntityStore.insertCountry(this.value());
   }
 }

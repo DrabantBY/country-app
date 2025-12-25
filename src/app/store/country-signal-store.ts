@@ -1,23 +1,22 @@
-import type { CountryType } from "@models";
-import { CountryHttpService } from "./country-http.service";
-import {
-  signalStore,
-  withMethods,
-  withState,
-  patchState,
-  withProps,
-  withHooks,
-} from "@ngrx/signals";
 import { inject } from "@angular/core";
-import { MessageService } from "@shared";
+import type { CountryType } from "@models";
 import { tapResponse } from "@ngrx/operators";
-
+import {
+  patchState,
+  signalStore,
+  withHooks,
+  withMethods,
+  withProps,
+  withState,
+} from "@ngrx/signals";
 import { rxMethod } from "@ngrx/signals/rxjs-interop";
+import { CountryHttpService } from "@services";
+import { MessageService } from "@shared";
 import { switchMap } from "rxjs";
 
 const initialState: { countries: CountryType.Data[] } = { countries: [] };
 
-export const CountryStore = signalStore(
+export const CountrySignalStore = signalStore(
   withState(initialState),
   withProps(() => ({
     countryHttpService: inject(CountryHttpService),
