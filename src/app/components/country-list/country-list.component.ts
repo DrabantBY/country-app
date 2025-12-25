@@ -1,4 +1,4 @@
-import { Component, inject } from "@angular/core";
+import { Component, inject, linkedSignal } from "@angular/core";
 import { applyEach, Field, form } from "@angular/forms/signals";
 import { MatIconButton } from "@angular/material/button";
 import { MatIcon } from "@angular/material/icon";
@@ -10,7 +10,7 @@ import {
   MatSuffix,
 } from "@angular/material/input";
 import type { CountryType } from "@models";
-import { CountryDataService } from "@services";
+import { CountryStore } from "@services";
 import { ConfirmService } from "@shared";
 import { countryValidation } from "@validation";
 
@@ -31,9 +31,9 @@ import { countryValidation } from "@validation";
 })
 export class CountryListComponent {
   #confirmService = inject(ConfirmService);
-  #countryDataService = inject(CountryDataService);
+  #countryStore = inject(CountryStore);
 
-  protected list = this.#countryDataService.list;
+  protected list = linkedSignal(() => this.#countryStore.countries());
 
   protected listForm = form<CountryType.Data[]>(this.list, (root) => {
     applyEach(root, countryValidation);
@@ -45,12 +45,12 @@ export class CountryListComponent {
   ): Promise<void> {
     const hasConfirm = await this.#confirmService.open();
     if (!hasConfirm) return;
-    this.#countryDataService.upsertCountry(id, name);
+    this.#countryStore.upsertCountry({ id, name });
   }
 
   protected async deleteCountry(id: number | string): Promise<void> {
     const hasConfirm = await this.#confirmService.open();
     if (!hasConfirm) return;
-    this.#countryDataService.deleteCountry(id);
+    this.#countryStore.deleteCountry(id);
   }
 }
