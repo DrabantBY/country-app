@@ -11,7 +11,7 @@ import {
 } from "@angular/material/input";
 import type { CountryType } from "@models";
 import { ConfirmService } from "@shared";
-import { CountryEntityStore } from "@store";
+import { CountryStore } from "@store";
 import { countryValidation } from "@validation";
 
 @Component({
@@ -31,9 +31,9 @@ import { countryValidation } from "@validation";
 })
 export class CountryListComponent {
   #confirmService = inject(ConfirmService);
-  #countryEntityStore = inject(CountryEntityStore);
+  #countryStore = inject(CountryStore);
 
-  protected list = linkedSignal(this.#countryEntityStore.entities);
+  protected list = linkedSignal(this.#countryStore.entities);
 
   protected listForm = form<CountryType.Data[]>(this.list, (root) => {
     applyEach(root, countryValidation);
@@ -45,12 +45,12 @@ export class CountryListComponent {
   ): Promise<void> {
     const hasConfirm = await this.#confirmService.open();
     if (!hasConfirm) return;
-    this.#countryEntityStore.upsertCountry({ id, name });
+    this.#countryStore.upsertEntityCountry({ id, name });
   }
 
   protected async deleteCountry(id: number | string): Promise<void> {
     const hasConfirm = await this.#confirmService.open();
     if (!hasConfirm) return;
-    this.#countryEntityStore.deleteCountry(id);
+    this.#countryStore.deleteEntityCountry(id);
   }
 }

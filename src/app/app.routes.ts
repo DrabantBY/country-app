@@ -1,7 +1,7 @@
 import type { Routes } from "@angular/router";
 import { CountryHttpService } from "@services";
 import { CountryShellComponent } from "@shells";
-import { CountryEntityStore } from "@store";
+import { CountryStore } from "@store";
 
 export const routes: Routes = [
   {
@@ -12,7 +12,7 @@ export const routes: Routes = [
   {
     path: "countries",
     component: CountryShellComponent,
-    providers: [CountryHttpService, CountryEntityStore],
+    providers: [CountryHttpService, CountryStore],
   },
   {
     path: "**",
