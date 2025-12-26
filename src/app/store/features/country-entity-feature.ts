@@ -10,13 +10,13 @@ import {
 } from "@ngrx/signals/entities";
 import { rxMethod } from "@ngrx/signals/rxjs-interop";
 
-import { switchMap, exhaustMap } from "rxjs";
+import { exhaustMap } from "rxjs";
 import { CountryHttpService } from "@services";
 import { inject } from "@angular/core";
 import { MessageService } from "@shared";
 
-export const countryEntityFeature = () =>
-  signalStoreFeature(
+export function countryEntityFeature<_>() {
+  return signalStoreFeature(
     withEntities<CountryType.Data>(),
     withMethods(
       (
@@ -25,7 +25,7 @@ export const countryEntityFeature = () =>
         messageService = inject(MessageService),
       ) => ({
         loadEntityCountries: rxMethod<void>(
-          switchMap(() =>
+          exhaustMap(() =>
             countryHttpService.fetchList().pipe(
               tapResponse({
                 next: (countries) =>
@@ -42,7 +42,6 @@ export const countryEntityFeature = () =>
               tapResponse({
                 next: (country) => {
                   patchState(store, addEntity(country));
-
                   messageService.showSuccess(
                     `${country.name} is successfully added`,
                   );
@@ -83,3 +82,4 @@ export const countryEntityFeature = () =>
       }),
     ),
   );
+}

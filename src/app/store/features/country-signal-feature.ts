@@ -15,8 +15,8 @@ import { MessageService } from "@shared";
 
 const initialState: { countries: CountryType.Data[] } = { countries: [] };
 
-export const countrySignalFeature = () =>
-  signalStoreFeature(
+export function countrySignalFeature<_>() {
+  return signalStoreFeature(
     withState(initialState),
     withMethods(
       (
@@ -90,3 +90,4 @@ export const countrySignalFeature = () =>
       }),
     ),
   );
+}
