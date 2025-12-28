@@ -2,7 +2,7 @@
 
 **Test Angular application for displaying and managing country information.**
 
-### Technologies 🚀
+### 🚀 Technologies
 - [x] Angular 21+
 - [x] Angular Material
 - [x] RxJS
@@ -10,22 +10,12 @@
 - [x] TypeScript
 - [x] biome
 
-### Prerequisites 📋
+### 📋 Prerequisites
 - [x] [Node.js v24+](https://nodejs.org/) 
 - [x] [PNPM v10.26+](https://pnpm.io/) 
 - [x] [Git  v2.47+](https://git-scm.com/)
 
-> Check versions:
-```bash
-node --v
-```
-```bash
-pnpm -v
-```
-```bash
-git -v
-```
-### Quick Start ⚡
+### ⚡ Quick Start 
 > Clone the repository
 ```bash
 git clone https://github.com/DrabantBY/country-app.git
@@ -45,7 +35,7 @@ pnpm run server
 ```
 pnpm start
 ```
-### Project Structure 📁
+### 📁 Project Structure 
 ```
 country-app/
 ├── public/

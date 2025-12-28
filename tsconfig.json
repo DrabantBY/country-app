@@ -19,6 +19,7 @@
       "@services": ["app/services/index.ts"],
       "@shells": ["app/shells/index.ts"],
       "@validation": ["app/validation/index.ts"],
+      "@store": ["app/store/index.ts"],
       "@shared": ["app/shared/index.ts"]
     }
   },
