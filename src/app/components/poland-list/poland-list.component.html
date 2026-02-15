@@ -1,0 +1,39 @@
+<form [formGroup]="formGroup()">
+  <app-form-field
+    fieldName="name"
+    label="country"
+    (editEvent)="editData($event)"
+    (deleteEvent)="deleteData($event)"
+  />
+
+  <div class="cities" formArrayName="cities">
+    @for(field of formGroup().controls.cities.controls; track $index) {
+      <div [formGroupName]="$index">
+         <app-form-field
+           fieldName="name"
+           label="city"
+           (editEvent)="editData($event)"
+           (deleteEvent)="deleteData($event)"
+         />
+            <div class="streets" formArrayName="streets">
+              @for(street of field.controls.streets.controls; track $index) {
+                <div [formGroupName]="$index">
+                  <app-form-field
+                    fieldName="name"
+                    label="street"
+                    (editEvent)="editData($event)"
+                    (deleteEvent)="deleteData($event)"
+                  />
+                </div>
+              }
+            </div>
+        </div>
+    }
+  </div>
+</form>
+
+
+
+
+
+

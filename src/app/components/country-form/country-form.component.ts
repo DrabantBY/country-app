@@ -28,7 +28,7 @@ import { countryValidation } from "@validation";
   templateUrl: "./country-form.component.html",
 })
 export class CountryFormComponent {
-  #countryStore = inject(CountryStore);
+  private readonly countryStore = inject(CountryStore);
 
   protected countryForm = form<Omit<CountryType.Data, "id">>(
     signal({
@@ -44,6 +44,6 @@ export class CountryFormComponent {
   );
 
   protected insertCountry(): void {
-    this.#countryStore.insertEntityCountry(this.value());
+    this.countryStore.insertEntityCountry(this.value());
   }
 }

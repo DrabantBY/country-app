@@ -1,0 +1,21 @@
+<mat-form-field appearance="outline">
+    <mat-label>{{label()}}</mat-label>
+    <input matInput [value]="field?.value"  />
+    <button
+      type="button"
+      matIconButton
+      matSuffix
+      (click)="emitEditEvent()"
+    >
+      <mat-icon fontIcon>edit</mat-icon>
+    </button>
+    <button
+      type="button"
+      matIconButton
+      matSuffix
+      (click)="emitDeleteEvent()"
+    >
+      <mat-icon fontIcon>delete</mat-icon>
+    </button>
+</mat-form-field>
+

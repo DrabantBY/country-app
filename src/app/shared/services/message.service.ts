@@ -8,11 +8,11 @@ import { EMPTY } from "rxjs";
   providedIn: "root",
 })
 export class MessageService {
-  #snackBar = inject(MatSnackBar);
+  private readonly snackBar = inject(MatSnackBar);
 
   showError(err: unknown, action: string = "CLOSE"): Observable<never> {
     if (err instanceof Error || err instanceof HttpErrorResponse) {
-      this.#snackBar.open(err.message || "error", action);
+      this.snackBar.open(err.message || "error", action);
     } else {
       console.error(err);
     }
@@ -21,6 +21,6 @@ export class MessageService {
   }
 
   showSuccess(message: string, action: string = "CLOSE"): void {
-    this.#snackBar.open(message, action);
+    this.snackBar.open(message, action);
   }
 }

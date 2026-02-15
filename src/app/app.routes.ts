@@ -1,5 +1,9 @@
 import type { Routes } from "@angular/router";
-import { CountryHttpService } from "@services";
+import {
+  CountryHttpService,
+  PolandDataService,
+  PolandHttpService,
+} from "@services";
 import { CountryShellComponent } from "@shells";
 import { CountryStore } from "@store";
 
@@ -11,8 +15,16 @@ export const routes: Routes = [
   },
   {
     path: "countries",
-    component: CountryShellComponent,
     providers: [CountryHttpService, CountryStore],
+    component: CountryShellComponent,
+  },
+  {
+    path: "country",
+    providers: [PolandHttpService, PolandDataService],
+    loadComponent: () =>
+      import("@shells").then(
+        ({ PolandShellComponent }) => PolandShellComponent,
+      ),
   },
   {
     path: "**",

@@ -7,11 +7,11 @@ import { firstValueFrom } from "rxjs";
   providedIn: "root",
 })
 export class ConfirmService {
-  #dialog = inject(MatDialog);
+  private readonly dialog = inject(MatDialog);
 
   open(): Promise<boolean> {
     return firstValueFrom<boolean>(
-      this.#dialog.open(ConfirmComponent).afterClosed(),
+      this.dialog.open(ConfirmComponent).afterClosed(),
     );
   }
 }

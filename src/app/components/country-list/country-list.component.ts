@@ -30,10 +30,10 @@ import { countryValidation } from "@validation";
   styleUrl: "./country-list.component.scss",
 })
 export class CountryListComponent {
-  #confirmService = inject(ConfirmService);
-  #countryStore = inject(CountryStore);
+  private readonly confirmService = inject(ConfirmService);
+  private readonly countryStore = inject(CountryStore);
 
-  protected list = linkedSignal(this.#countryStore.entities);
+  protected list = linkedSignal(this.countryStore.entities);
 
   protected listForm = form<CountryType.Data[]>(this.list, (root) => {
     applyEach(root, countryValidation);
@@ -43,14 +43,14 @@ export class CountryListComponent {
     id: number | string,
     name: string,
   ): Promise<void> {
-    const hasConfirm = await this.#confirmService.open();
+    const hasConfirm = await this.confirmService.open();
     if (!hasConfirm) return;
-    this.#countryStore.upsertEntityCountry({ id, name });
+    this.countryStore.upsertEntityCountry({ id, name });
   }
 
   protected async deleteCountry(id: number | string): Promise<void> {
-    const hasConfirm = await this.#confirmService.open();
+    const hasConfirm = await this.confirmService.open();
     if (!hasConfirm) return;
-    this.#countryStore.deleteEntityCountry(id);
+    this.countryStore.deleteEntityCountry(id);
   }
 }

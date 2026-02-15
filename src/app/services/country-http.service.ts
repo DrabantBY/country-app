@@ -5,25 +5,25 @@ import type { Observable } from "rxjs";
 
 @Injectable()
 export class CountryHttpService {
-  #http = inject(HttpClient);
+  private readonly http = inject(HttpClient);
 
-  #buildUrl(id: number | string = ""): string {
+  private buildUrl(id: number | string = ""): string {
     return `http://localhost:3000/countries/${id}`;
   }
 
   fetchList(): Observable<CountryType.Data[]> {
-    return this.#http.get<CountryType.Data[]>(this.#buildUrl());
+    return this.http.get<CountryType.Data[]>(this.buildUrl());
   }
 
   insertOne(name: string): Observable<CountryType.Data> {
-    return this.#http.post<CountryType.Data>(this.#buildUrl(), { name });
+    return this.http.post<CountryType.Data>(this.buildUrl(), { name });
   }
 
   upsertOne(id: string | number, name: string): Observable<CountryType.Data> {
-    return this.#http.put<CountryType.Data>(this.#buildUrl(id), { name });
+    return this.http.put<CountryType.Data>(this.buildUrl(id), { name });
   }
 
   deleteOne(id: string | number): Observable<CountryType.Data> {
-    return this.#http.delete<CountryType.Data>(this.#buildUrl(id));
+    return this.http.delete<CountryType.Data>(this.buildUrl(id));
   }
 }
