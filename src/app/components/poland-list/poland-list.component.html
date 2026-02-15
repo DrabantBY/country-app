@@ -1,33 +1,29 @@
-<form [formGroup]="formGroup()">
+<form [formGroup]="formGroup()" (ngSubmit)="onSubmit()">
   <app-form-field
     fieldName="name"
     label="country"
-    (editEvent)="editData($event)"
-    (deleteEvent)="deleteData($event)"
   />
 
   <div class="cities" formArrayName="cities">
-    @for(field of formGroup().controls.cities.controls; track $index) {
-      <div [formGroupName]="$index">
+    @for(field of formGroup().controls.cities.controls; let cityIndex = $index; track cityIndex) {
+      <ng-container [formGroupName]="cityIndex">
          <app-form-field
            fieldName="name"
            label="city"
-           (editEvent)="editData($event)"
-           (deleteEvent)="deleteData($event)"
+           (deleteEvent)="onDelete('cities', cityIndex)"
          />
             <div class="streets" formArrayName="streets">
-              @for(street of field.controls.streets.controls; track $index) {
-                <div [formGroupName]="$index">
+              @for(_ of field.controls.streets.controls; let streetIndex = $index; track streetIndex) {
+                <ng-container [formGroupName]="streetIndex">
                   <app-form-field
                     fieldName="name"
                     label="street"
-                    (editEvent)="editData($event)"
-                    (deleteEvent)="deleteData($event)"
+                    (deleteEvent)="onDelete('cities', cityIndex, 'streets', streetIndex)"
                   />
-                </div>
+                </ng-container>
               }
             </div>
-        </div>
+        </ng-container>
     }
   </div>
 </form>

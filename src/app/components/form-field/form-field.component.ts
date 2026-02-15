@@ -1,16 +1,14 @@
 import { Component, inject, input, output } from "@angular/core";
-
 import {
   MatFormField,
   MatInput,
   MatLabel,
   MatSuffix,
 } from "@angular/material/input";
-
-import type { AbstractControl } from "@angular/forms";
 import { MatIcon } from "@angular/material/icon";
 import { MatIconButton } from "@angular/material/button";
 import { ControlContainer } from "@angular/forms";
+import type { AbstractControl } from "@angular/forms";
 
 @Component({
   imports: [
@@ -23,6 +21,7 @@ import { ControlContainer } from "@angular/forms";
   ],
   selector: "app-form-field",
   templateUrl: "form-field.component.html",
+  standalone: true,
   viewProviders: [
     {
       provide: ControlContainer,
@@ -34,17 +33,20 @@ export class FormFieldComponent {
   readonly controlContainer = inject(ControlContainer);
   readonly label = input.required<string>();
   readonly fieldName = input.required<string>();
-  readonly editEvent = output<string>();
-  readonly deleteEvent = output<string>();
+
+  readonly deleteEvent = output<void>();
 
   get field(): AbstractControl | undefined | null {
     return this.controlContainer.control?.get(this.fieldName());
   }
 
-  protected emitEditEvent(): void {
-    this.editEvent.emit("edit");
+  protected onInput(event: Event): void {
+    if (this.field) {
+      this.field.setValue((event.target as HTMLInputElement).value);
+    }
   }
-  protected emitDeleteEvent(): void {
-    this.deleteEvent.emit("delete");
+
+  protected onDelete(): void {
+    this.deleteEvent.emit();
   }
 }
