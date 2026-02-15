@@ -3,6 +3,7 @@ import { takeUntilDestroyed, toSignal } from "@angular/core/rxjs-interop";
 import { PolandHttpService } from "@services";
 import { MessageService } from "@shared";
 import { catchError } from "rxjs";
+import type { CountryType } from "@models";
 
 @Injectable()
 export class PolandDataService {
@@ -12,7 +13,7 @@ export class PolandDataService {
 
   source = toSignal(this.polandHttpService.fetchCountry());
 
-  list = linkedSignal(() => this.source());
+  country = linkedSignal(() => this.source());
 
   // insertCountry(countryName: string): void {
   //   this.polandHttpService
@@ -29,20 +30,18 @@ export class PolandDataService {
   //     });
   // }
   //
-  // upsertCountry(countryId: number | string, countryName: string): void {
-  //   this.polandHttpService
-  //     .upsertOne(countryId, countryName)
-  //     .pipe(
-  //       takeUntilDestroyed(this.destroyRef),
-  //       catchError((err) => this.messageService.showError(err)),
-  //     )
-  //     .subscribe((country) => {
-  //       this.list.update((prev) =>
-  //         prev.map((item) => (item.id === country.id ? country : item)),
-  //       );
-  //       this.messageService.showSuccess(`country is successfully updated`);
-  //     });
-  // }
+  upsertCountry(data: CountryType.Country): void {
+    this.polandHttpService
+      .upsertOne(data)
+      .pipe(
+        takeUntilDestroyed(this.destroyRef),
+        catchError((err) => this.messageService.showError(err)),
+      )
+      .subscribe((data) => {
+        this.country.set(data);
+        this.messageService.showSuccess(`country is successfully updated`);
+      });
+  }
   //
   // deleteCountry(countryId: number | string): void {
   //   this.polandHttpService

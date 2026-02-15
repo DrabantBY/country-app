@@ -19,9 +19,9 @@ export class PolandHttpService {
   //   return this.http.post<CountryType.Data>(this.buildUrl(), { name });
   // }
   //
-  // upsertOne(id: string | number, name: string): Observable<CountryType.Data> {
-  //   return this.http.put<CountryType.Data>(this.buildUrl(id), { name });
-  // }
+  upsertOne(country: CountryType.Country): Observable<CountryType.Country> {
+    return this.http.put<CountryType.Country>(this.buildUrl(), { ...country });
+  }
   //
   // deleteOne(id: string | number): Observable<CountryType.Data> {
   //   return this.http.delete<CountryType.Data>(this.buildUrl(id));
