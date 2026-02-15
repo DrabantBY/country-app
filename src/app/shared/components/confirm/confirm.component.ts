@@ -13,13 +13,13 @@ import {
   styleUrl: "./confirm.component.scss",
 })
 export class ConfirmComponent {
-  #dialogRef = inject(MatDialogRef<ConfirmComponent>);
+  private readonly dialogRef = inject(MatDialogRef<ConfirmComponent>);
 
   cancel(): void {
-    this.#dialogRef.close(false);
+    this.dialogRef.close(false);
   }
 
   confirm(): void {
-    this.#dialogRef.close(true);
+    this.dialogRef.close(true);
   }
 }

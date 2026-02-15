@@ -9,12 +9,56 @@
       "name": "Ukraine"
     },
     {
-      "name": "Germany",
-      "id": "6"
+      "id": "6",
+      "name": "Germany"
     },
     {
       "id": "8",
       "name": "Italy"
     }
-  ]
+  ],
+
+  "country": {
+    "id": 1,
+    "name": "Poland",
+    "cities": [
+      {
+        "id": 1,
+        "name": "Warsaw",
+        "streets": [
+          {
+            "id": 1,
+            "name": "Bonifacego"
+          },
+          {
+            "id": 2,
+            "name": "Dombrowskiego"
+          },
+          {
+            "id": 3,
+            "name": "Wojska Polskiego"
+          },
+          {
+            "id": 4,
+            "name": "Armiji Krajowej"
+          }
+        ]
+      },
+
+      {
+        "id": 2,
+        "name": "Gdansk",
+        "streets": [
+          {
+            "id": 1,
+            "name": "Dluga"
+          },
+          {
+            "id": 2,
+            "name": "Baltycka"
+          }
+        ]
+      }
+    ]
+  }
 }
